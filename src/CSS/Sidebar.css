@@ -1,0 +1,53 @@
+.sidebar {
+  width: 240px;
+  height: 100%;
+  background-color: #112D4E; /* Fondo azul oscuro */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: width 0.3s ease; /* Transición suave */
+}
+
+.sidebar.collapsed {
+  width: 60px; /* Ancho reducido cuando colapsado */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #DBE2EF;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #F9F7F7;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #3F72AF;
+}
+
+.sidebar-item-icon {
+  margin-right: 10px;
+}
+
+/* Ocultar texto del menú si está colapsado */
+.sidebar.collapsed .sidebar-item span:not(.sidebar-item-icon) {
+  display: none;
+}

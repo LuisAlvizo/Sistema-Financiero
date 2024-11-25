@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Tipografía elegante */
+    background: linear-gradient(135deg, #003973, #00c6ff); /* Fondo degradado */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #112d4e; /* Azul oscuro para el fondo del cuadro */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra flotante */
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  .login-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #3f72af; /* Fondo del ícono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-title {
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Color blanco tenue */
+    color: #fcfcfc;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .login-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 198, 255, 0.7); /* Resaltado en azul */
+    background-color: #f9f9f9; /* Color blanco tenue */
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3f72af; /* Azul para el botón */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .login-button:hover {
+    background-color: #28527a; /* Azul más oscuro al pasar el mouse */
+  }
+  
+  .login-footer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #dbe2ef;
+  }
+  
+  .login-footer a {
+    color: #00c6ff; /* Enlace en azul claro */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+

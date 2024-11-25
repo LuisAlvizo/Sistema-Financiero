@@ -1,0 +1,36 @@
+/* Layout principal */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  height: 100%;
+  background-color: #112D4E; /* Azul oscuro */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+  transition: width 0.3s ease; /* Transición suave para el colapso */
+}
+
+/* Contenido principal */
+.main-content {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  padding: 20px;
+  background-color: #F9F9F9; /* Fondo claro */
+  overflow-y: auto; /* Scroll vertical si el contenido es extenso */
+  transition: margin-left 0.3s ease; /* Transición suave con el Sidebar */
+}
+
+/* Responsivo: Sidebar colapsado en pantallas pequeñas */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* Colapsar ancho del Sidebar */
+  }
+
+  .main-content {
+    margin-left: 60px; /* Ajusta margen según el ancho del Sidebar colapsado */
+  }
+}

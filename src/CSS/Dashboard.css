@@ -1,0 +1,29 @@
+.dashboard {
+  background-color: #F9F7F7;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Efecto flotante */
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.dashboard h1 {
+  color: #112D4E;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.dashboard p {
+  color: #3F72AF;
+  font-size: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
