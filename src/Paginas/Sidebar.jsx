@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Sidebar.css';
 import { Dashboard, PieChart, BarChart, People, Settings, Logout, Menu } from '@mui/icons-material';
+import { SiGooglecampaignmanager360 } from "react-icons/si";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -11,12 +12,14 @@ const Sidebar = () => {
     { text: 'Dashboard', icon: <Dashboard />, route: '/dashboard' },
     { text: 'Analytics', icon: <PieChart />, route: '/analytics' },
     { text: 'Reports', icon: <BarChart />, route: '/reports' },
+    { text: 'Gestor', icon: <SiGooglecampaignmanager360 />, route: '/gestor' },
     { text: 'Users', icon: <People />, route: '/users' },
     { text: 'Settings', icon: <Settings />, route: '/settings' },
   ];
 
   const handleLogout = () => {
-    sessionStorage.removeItem('Token_usuario'); // Elimina el token
+    sessionStorage.removeItem('Token_usuario'); 
+    sessionStorage.removeItem('Usuario_Id'); 
     navigate('/login');
   };
 

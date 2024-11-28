@@ -1,29 +1,54 @@
-.dashboard {
-  background-color: #F9F7F7;
-  border-radius: 10px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Efecto flotante */
+.dashboard-container {
   padding: 20px;
-  animation: fadeIn 0.5s ease-in-out;
+  background-color: #f9f9f9;
 }
 
-.dashboard h1 {
-  color: #112D4E;
-  font-size: 28px;
-  margin-bottom: 10px;
+.dashboard-container h4 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.dashboard p {
-  color: #3F72AF;
-  font-size: 16px;
+.card {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.balance-card {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.balance-card.positive {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.balance-card.negative {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f5f5f5;
+}
+
+table td {
+  word-wrap: break-word;
 }

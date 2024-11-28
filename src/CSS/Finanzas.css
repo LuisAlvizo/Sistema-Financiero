@@ -1,0 +1,31 @@
+.professional-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .professional-select:focus {
+    border-color: #3f72af;
+    box-shadow: 0 0 5px rgba(63, 114, 175, 0.5);
+    background-color: #fff;
+  }
+  
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .input-field:focus {
+    border-color: #3f72af;
+    box-shadow: 0 0 5px rgba(63, 114, 175, 0.5);
+    background-color: #fff;
+  }
+  

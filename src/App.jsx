@@ -8,8 +8,10 @@ import {
 import Login from "./Paginas/login";
 import Registro from "./Paginas/Registro";
 import Dashboard from "./Paginas/Dashboard";
-import Analytics from "./Paginas/Analytics"; 
+import Analytics from "./Paginas/Analytics";
 import MainLayout from "./Paginas/MainLayout";
+import Gestor from "./Paginas/Gestor";
+import Reports from "./Paginas/Reports";
 
 // Componente para proteger rutas
 const PrivateRoute = ({ children }) => {
@@ -47,6 +49,26 @@ const App = () => {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/gestor"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Gestor />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Reports />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />        
 
         {/* Ruta para página no encontrada */}
         <Route path="*" element={<h1>Página no encontrada</h1>} />

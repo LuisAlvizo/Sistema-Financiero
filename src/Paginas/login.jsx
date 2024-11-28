@@ -23,7 +23,8 @@ const Login = () => {
     ApiUtils(
       service,
       (data) => {
-        sessionStorage.setItem('Token_usuario', data.token);
+        sessionStorage.setItem('Token_usuario', data.token); // Almacenar token en sessionStorage
+        sessionStorage.setItem('Usuario_Id', data.userId); // Almacenar id_usuario en sessionStorage
         navigate('/dashboard');
       },
       (err) => {
