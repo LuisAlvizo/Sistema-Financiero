@@ -52,6 +52,14 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     },
+    EliminarAnalisis: {
+      url: `${ApiUrl}/analisis`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
     ActualizarDatos: {
       method: "PUT",
       url: `${ApiUrl}/usuario/actualizar`,

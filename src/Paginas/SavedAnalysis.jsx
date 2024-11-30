@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, TextInput, Row, Col } from "react-materialize";
-import { Pagination } from "@mui/material"; 
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import { Pagination } from "@mui/material";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
+import Swal from "sweetalert2";
 import ApiUtils from "../api/ApiUtils";
 import Config from "../api/Config";
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+import { FaTrashAlt } from "react-icons/fa";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const SavedAnalysis = () => {
   const [analisis, setAnalisis] = useState([]);
@@ -56,6 +74,44 @@ const SavedAnalysis = () => {
     fetchSavedAnalysis(page, search);
   };
 
+  const handleDeleteAnalysis = async (id) => {
+    const confirm = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Este análisis será eliminado de forma permanente.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (confirm.isConfirmed) {
+      const service = {
+        method: "DELETE",
+        url: `${Config.Usuario.EliminarAnalisis.url}/${id}`,
+        headers: Config.Usuario.EliminarAnalisis.headers(),
+      };
+
+      try {
+        ApiUtils(
+          service,
+          () => {
+            Swal.fire("Eliminado", "El análisis ha sido eliminado.", "success");
+            setAnalisis((prev) => prev.filter((item) => item.id_accion !== id));
+          },
+          () => Swal.fire("Error", "No se pudo eliminar el análisis.", "error")
+        );
+      } catch (err) {
+        Swal.fire(
+          "Error",
+          "Ocurrió un error al intentar eliminar el análisis.",
+          "error"
+        );
+      }
+    }
+  };
+
   const renderChart = (predicciones, ticker) => {
     const labels = predicciones.map((p) => p.date);
     const prices = predicciones.map((p) => p.price);
@@ -77,11 +133,21 @@ const SavedAnalysis = () => {
   };
 
   return (
-    <div className="saved-analysis-container" style={{ textAlign: "center", padding: "20px" }}>
+    <div
+      className="saved-analysis-container"
+      style={{ textAlign: "center", padding: "20px" }}
+    >
       <Card style={{ padding: "20px" }}>
         <h4 style={{ textAlign: "center" }}>Análisis Guardados</h4>
         <Row>
-          <Col s={12} style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+          <Col
+            s={12}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "20px",
+            }}
+          >
             <TextInput
               label="Buscar por nombre o ticker"
               value={search}
@@ -91,7 +157,11 @@ const SavedAnalysis = () => {
             />
           </Col>
           <Col s={12} className="center-align">
-            <Button className="blue darken-2" onClick={handleSearch} style={{ marginBottom: "20px" }}>
+            <Button
+              className="blue darken-2"
+              onClick={handleSearch}
+              style={{ marginBottom: "20px" }}
+            >
               Buscar
             </Button>
           </Col>
@@ -102,11 +172,17 @@ const SavedAnalysis = () => {
         ) : error ? (
           <p style={{ color: "red", textAlign: "center" }}>{error}</p>
         ) : analisis.length === 0 ? (
-          <p style={{ textAlign: "center" }}>No se encontraron análisis guardados.</p>
+          <p style={{ textAlign: "center" }}>
+            No se encontraron análisis guardados.
+          </p>
         ) : (
           <>
             {analisis.map((item) => (
-              <Card key={item.id_accion} className="hoverable" style={{ marginBottom: "20px" }}>
+              <Card
+                key={item.id_accion}
+                className="hoverable"
+                style={{ marginBottom: "20px" }}
+              >
                 <h5>{item.nombre_empresa}</h5>
                 <p>
                   <strong>Ticker:</strong> {item.ticker}
@@ -117,11 +193,31 @@ const SavedAnalysis = () => {
                   <br />
                   <strong>Rendimiento:</strong> {item.rendimiento}%
                 </p>
-                <div style={{ height: "400px" }}>{renderChart(item.predicciones, item.ticker)}</div>
+                <div style={{ height: "400px" }}>
+                  {renderChart(item.predicciones, item.ticker)}
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleDeleteAnalysis(item.id_accion)}
+                >
+                  <FaTrashAlt size={20} color="red" />
+                </div>
               </Card>
             ))}
             <Row>
-              <Col s={12} style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+              <Col
+                s={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "20px",
+                }}
+              >
                 <Pagination
                   count={totalPages}
                   page={currentPage}
@@ -129,7 +225,11 @@ const SavedAnalysis = () => {
                   variant="outlined"
                   shape="rounded"
                   color="primary"
-                  style={{ backgroundColor: "#fff", padding: "10px", borderRadius: "5px" }}
+                  style={{
+                    backgroundColor: "#fff",
+                    padding: "10px",
+                    borderRadius: "5px",
+                  }}
                 />
               </Col>
             </Row>
