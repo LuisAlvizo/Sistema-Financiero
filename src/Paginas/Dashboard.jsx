@@ -32,10 +32,19 @@ const Dashboard = () => {
     d.fecha_inicio.startsWith(mesSeleccionado)
   );
 
-  const totalGastos = gastosMes.reduce((acc, curr) => acc + parseFloat(curr.monto), 0);
-  const totalIngresos = ingresosMes.reduce((acc, curr) => acc + parseFloat(curr.monto), 0);
-  const totalDeudas = deudasMes.reduce((acc, curr) => acc + parseFloat(curr.monto), 0);
-  const balance = totalIngresos - totalGastos; // Ganancias o pérdidas sin considerar deudas
+  const totalGastos = gastosMes.reduce(
+    (acc, curr) => acc + parseFloat(curr.monto),
+    0
+  );
+  const totalIngresos = ingresosMes.reduce(
+    (acc, curr) => acc + parseFloat(curr.monto),
+    0
+  );
+  const totalDeudas = deudasMes.reduce(
+    (acc, curr) => acc + parseFloat(curr.monto),
+    0
+  );
+  const balance = totalIngresos - totalGastos;
 
   const combinedData = [
     ["Categoría", "Monto", { role: "style" }],
@@ -62,29 +71,45 @@ const Dashboard = () => {
         <Col s={12}>
           <Card>
             <h5>Resumen General</h5>
-            <Chart
-              chartType="ColumnChart"
-              data={combinedData}
-              options={{
-                title: "Comparación de Gastos, Ingresos y Deudas",
-                legend: { position: "none" },
-                hAxis: { title: "Monto ($)" },
-                vAxis: { title: "Categorías" },
-                colors: ["red", "green", "blue"],
-              }}
-              width={"100%"}
-              height={"400px"}
-            />
+            {totalGastos || totalIngresos || totalDeudas ? (
+              <Chart
+                chartType="ColumnChart"
+                data={combinedData}
+                options={{
+                  title: "Comparación de Gastos, Ingresos y Deudas",
+                  legend: { position: "none" },
+                  hAxis: { title: "Monto ($)" },
+                  vAxis: { title: "Categorías" },
+                  colors: ["red", "green", "blue"],
+                }}
+                width={"100%"}
+                height={"400px"}
+              />
+            ) : (
+              <p className="center-align">No hay datos disponibles para este mes.</p>
+            )}
           </Card>
         </Col>
       </Row>
 
-      {/* Cuadro de ganancias o pérdidas */}
+      {/* Cuadros de resumen */}
       <Row>
         <Col s={12} m={6}>
-          <Card className={`balance-card ${balance >= 0 ? "positive" : "negative"}`}>
+          <Card
+            className={`balance-card ${
+              balance >= 0 ? "positive" : "negative"
+            }`}
+          >
             <h5>{balance >= 0 ? "Ganancias del Mes" : "Pérdidas del Mes"}</h5>
             <p>${balance.toFixed(2)}</p>
+          </Card>
+        </Col>
+        <Col s={12} m={6}>
+        <Card
+            className={`balance-card`}
+          >
+            <h5>Deudas Totales</h5>
+            <p>${totalDeudas.toFixed(2)}</p>
           </Card>
         </Col>
       </Row>
@@ -95,20 +120,27 @@ const Dashboard = () => {
           <Card>
             <h5>Gastos</h5>
             <p>Total: ${totalGastos.toFixed(2)}</p>
-            <Chart
-              chartType="PieChart"
-              data={[
-                ["Categoría", "Monto"],
-                ...gastosMes.map((g) => [g.descripcion, parseFloat(g.monto)]),
-              ]}
-              options={{
-                title: "Distribución de Gastos",
-                pieHole: 0.4,
-                colors: ["#ff6f61", "#ff8567", "#ff9e6d", "#ffb773"],
-              }}
-              width={"100%"}
-              height={"300px"}
-            />
+            {gastosMes.length ? (
+              <Chart
+                chartType="PieChart"
+                data={[
+                  ["Categoría", "Monto"],
+                  ...gastosMes.map((g) => [
+                    g.nombre_tipo_gasto,
+                    parseFloat(g.monto),
+                  ]),
+                ]}
+                options={{
+                  title: "Distribución de Gastos por Tipo",
+                  pieHole: 0.4,
+                  colors: ["#ff6f61", "#ff8567", "#ff9e6d", "#ffb773"],
+                }}
+                width={"100%"}
+                height={"300px"}
+              />
+            ) : (
+              <p className="center-align">No hay gastos para este mes.</p>
+            )}
           </Card>
         </Col>
 
@@ -116,20 +148,28 @@ const Dashboard = () => {
           <Card>
             <h5>Ingresos</h5>
             <p>Total: ${totalIngresos.toFixed(2)}</p>
-            <Chart
-              chartType="BarChart"
-              data={[
-                ["Fuente", "Monto", { role: "style" }],
-                ...ingresosMes.map((i) => [i.descripcion, parseFloat(i.monto), "green"]),
-              ]}
-              options={{
-                title: "Fuentes de Ingresos",
-                legend: { position: "none" },
-                colors: ["#4caf50"],
-              }}
-              width={"100%"}
-              height={"300px"}
-            />
+            {ingresosMes.length ? (
+              <Chart
+                chartType="BarChart"
+                data={[
+                  ["Fuente", "Monto", { role: "style" }],
+                  ...ingresosMes.map((i) => [
+                    i.nombre_tipo_ingreso,
+                    parseFloat(i.monto),
+                    "green",
+                  ]),
+                ]}
+                options={{
+                  title: "Fuentes de Ingresos por Tipo",
+                  legend: { position: "none" },
+                  colors: ["#4caf50"],
+                }}
+                width={"100%"}
+                height={"300px"}
+              />
+            ) : (
+              <p className="center-align">No hay ingresos para este mes.</p>
+            )}
           </Card>
         </Col>
 
@@ -137,20 +177,24 @@ const Dashboard = () => {
           <Card>
             <h5>Deudas</h5>
             <p>Total: ${totalDeudas.toFixed(2)}</p>
-            <Chart
-              chartType="ColumnChart"
-              data={[
-                ["Acreedor", "Monto", { role: "style" }],
-                ...deudasMes.map((d) => [d.acreedor, parseFloat(d.monto), "blue"]),
-              ]}
-              options={{
-                title: "Deudas por Acreedor",
-                legend: { position: "none" },
-                colors: ["#2196f3"],
-              }}
-              width={"100%"}
-              height={"300px"}
-            />
+            {deudasMes.length ? (
+              <Chart
+                chartType="ColumnChart"
+                data={[
+                  ["Acreedor", "Monto", { role: "style" }],
+                  ...deudasMes.map((d) => [d.acreedor, parseFloat(d.monto), "blue"]),
+                ]}
+                options={{
+                  title: "Deudas por Acreedor",
+                  legend: { position: "none" },
+                  colors: ["#2196f3"],
+                }}
+                width={"100%"}
+                height={"300px"}
+              />
+            ) : (
+              <p className="center-align">No hay deudas para este mes.</p>
+            )}
           </Card>
         </Col>
       </Row>
@@ -165,6 +209,7 @@ const Dashboard = () => {
                 <tr>
                   <th>Fecha</th>
                   <th>Descripción</th>
+                  <th>Tipo</th>
                   <th>Monto</th>
                 </tr>
               </thead>
@@ -173,6 +218,7 @@ const Dashboard = () => {
                   <tr key={idx}>
                     <td>{new Date(g.fecha_gasto).toLocaleDateString()}</td>
                     <td>{g.descripcion}</td>
+                    <td>{g.nombre_tipo_gasto}</td>
                     <td>${parseFloat(g.monto).toFixed(2)}</td>
                   </tr>
                 ))}
@@ -189,6 +235,7 @@ const Dashboard = () => {
                 <tr>
                   <th>Fecha</th>
                   <th>Descripción</th>
+                  <th>Tipo</th>
                   <th>Monto</th>
                 </tr>
               </thead>
@@ -197,6 +244,7 @@ const Dashboard = () => {
                   <tr key={idx}>
                     <td>{new Date(i.fecha_ingreso).toLocaleDateString()}</td>
                     <td>{i.descripcion}</td>
+                    <td>{i.nombre_tipo_ingreso}</td>
                     <td>${parseFloat(i.monto).toFixed(2)}</td>
                   </tr>
                 ))}

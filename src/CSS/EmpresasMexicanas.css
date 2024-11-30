@@ -1,0 +1,32 @@
+.empresas-container {
+    margin: 20px;
+  }
+  
+  .search-bar-container {
+    text-align: center;
+  }
+  
+  .empresa-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .empresa-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .ticker {
+    margin-top: 10px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+  }
+  

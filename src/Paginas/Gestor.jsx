@@ -64,7 +64,8 @@ const Gestor = () => {
   return (
     <div className="gestor-container">
       <Card>
-        <h4>Gestor de Finanzas Personales</h4>
+      <h4 style={{ textAlign: "center" }}>
+      Gestor de Finanzas Personales</h4>
         <Tabs>
           <Tab title="Finanzas" active>
             <Row>

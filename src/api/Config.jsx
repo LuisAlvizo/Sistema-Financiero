@@ -36,6 +36,52 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     },
+    GuardarAnalisis: {
+      method: "POST",
+      url: `${ApiUrl}/guardar-analisis`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
+    ObtenerDatos: {
+      method: "GET",
+      url: `${ApiUrl}/usuario/datos`,
+      headers: () => ({
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
+    ActualizarDatos: {
+      method: "PUT",
+      url: `${ApiUrl}/usuario/actualizar`,
+      headers: () => ({
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
+    AnalisisGuardados: {
+      method: "GET",
+      url: `${ApiUrl}/analisis-guardados`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
+    CambiarContraseña: {
+      method: "POST",
+      url: `${ApiUrl}/usuario/cambiar-contrasena`,
+      headers: () => ({
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
+    EliminarCuenta: {
+      method: "DELETE",
+      url: `${ApiUrl}/usuario/eliminar`,
+      headers: () => ({
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
   },
   Finanzas: {
     Guardar: {
@@ -85,6 +131,15 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     },
+    Eliminar: (id) => ({
+      method: "DELETE",
+      url: `${ApiUrl}/gastos/${id}`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    }),
   },
   Ingresos: {
     Guardar: {
@@ -105,6 +160,15 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     },
+    Eliminar: (id) => ({
+      method: "DELETE",
+      url: `${ApiUrl}/ingresos/${id}`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    }),
   },
   Tipos: {
     TipoGasto: {
@@ -154,6 +218,15 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     }),
+    Eliminar: (id) => ({
+      method: "DELETE",
+      url: `${ApiUrl}/deudas/${id}`,
+      headers: () => ({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    }),
   },
   Dashboard: {
     ObtenerResumen: (mes, anio) => ({
@@ -165,6 +238,16 @@ const Config = {
         Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
       }),
     }),
+  },
+  Sectores: {
+    Obtener: {
+      method: "GET",
+      url: `${ApiUrl}/sectores`,
+      headers: () => ({
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("Token_usuario")}`,
+      }),
+    },
   },
 };
 

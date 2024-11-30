@@ -3,6 +3,7 @@ import FinanzasReport from "./FinanzasReport";
 import GastosReport from "./GastosReport";
 import IngresosReport from "./IngresosReport";
 import DeudasReport from "./DeudasReport";
+import SavedAnalysis from "./SavedAnalysis";
 import { Tabs, Tab, Card } from "react-materialize";
 
 const Reports = () => {
@@ -29,6 +30,11 @@ const Reports = () => {
           <Tab title="Deudas">
             <div className="table-responsive">
               <DeudasReport />
+            </div>
+          </Tab>
+          <Tab title="Análisis">
+            <div className="table-responsive">
+              <SavedAnalysis />
             </div>
           </Tab>
         </Tabs>

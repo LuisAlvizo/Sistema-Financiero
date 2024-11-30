@@ -10,8 +10,11 @@ import Registro from "./Paginas/Registro";
 import Dashboard from "./Paginas/Dashboard";
 import Analytics from "./Paginas/Analytics";
 import MainLayout from "./Paginas/MainLayout";
+import Users from "./Paginas/Users";
 import Gestor from "./Paginas/Gestor";
 import Reports from "./Paginas/Reports";
+import "materialize-css/dist/css/materialize.min.css";
+import "materialize-css/dist/js/materialize.min.js";
 
 // Componente para proteger rutas
 const PrivateRoute = ({ children }) => {
@@ -68,7 +71,17 @@ const App = () => {
               </MainLayout>
             </PrivateRoute>
           }
-        />        
+        />      
+          <Route
+          path="/users"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Users />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />  
 
         {/* Ruta para página no encontrada */}
         <Route path="*" element={<h1>Página no encontrada</h1>} />

@@ -1,0 +1,41 @@
+.user-account-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+  
+  .responsive-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .delete-account-card {
+    text-align: center;
+    background: #ffe6e6;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .error-text {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .success-text {
+    color: green;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .responsive-card {
+      padding: 1rem;
+    }
+  }
+  

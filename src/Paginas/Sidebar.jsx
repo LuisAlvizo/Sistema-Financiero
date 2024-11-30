@@ -9,12 +9,11 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const menuItems = [
-    { text: 'Dashboard', icon: <Dashboard />, route: '/dashboard' },
-    { text: 'Analytics', icon: <PieChart />, route: '/analytics' },
-    { text: 'Reports', icon: <BarChart />, route: '/reports' },
+    { text: 'Panel', icon: <Dashboard />, route: '/dashboard' },
+    { text: 'Análisis', icon: <PieChart />, route: '/analytics' },
+    { text: 'Reportes', icon: <BarChart />, route: '/reports' },
     { text: 'Gestor', icon: <SiGooglecampaignmanager360 />, route: '/gestor' },
-    { text: 'Users', icon: <People />, route: '/users' },
-    { text: 'Settings', icon: <Settings />, route: '/settings' },
+    { text: 'Cuenta', icon: <People />, route: '/users' },
   ];
 
   const handleLogout = () => {
