@@ -10,6 +10,7 @@ import Registro from "./Paginas/Registro";
 import Dashboard from "./Paginas/Dashboard";
 import Analytics from "./Paginas/Analytics";
 import MainLayout from "./Paginas/MainLayout";
+import FinancialEducationCourse from "./Paginas/FinancialEducationCourse";
 import Users from "./Paginas/Users";
 import Gestor from "./Paginas/Gestor";
 import Reports from "./Paginas/Reports";
@@ -71,8 +72,8 @@ const App = () => {
               </MainLayout>
             </PrivateRoute>
           }
-        />      
-          <Route
+        />
+        <Route
           path="/users"
           element={
             <PrivateRoute>
@@ -81,7 +82,17 @@ const App = () => {
               </MainLayout>
             </PrivateRoute>
           }
-        />  
+        />
+        <Route
+          path="/curso"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <FinancialEducationCourse />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
 
         {/* Ruta para página no encontrada */}
         <Route path="*" element={<h1>Página no encontrada</h1>} />

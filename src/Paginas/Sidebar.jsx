@@ -1,31 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../CSS/Sidebar.css';
-import { Dashboard, PieChart, BarChart, People, Settings, Logout, Menu } from '@mui/icons-material';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../CSS/Sidebar.css";
+import {
+  Dashboard,
+  PieChart,
+  BarChart,
+  People,
+  Settings,
+  Logout,
+  Menu,
+} from "@mui/icons-material";
 import { SiGooglecampaignmanager360 } from "react-icons/si";
+import { IoInformationCircle } from "react-icons/io5";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const menuItems = [
-    { text: 'Panel', icon: <Dashboard />, route: '/dashboard' },
-    { text: 'Análisis', icon: <PieChart />, route: '/analytics' },
-    { text: 'Reportes', icon: <BarChart />, route: '/reports' },
-    { text: 'Gestor', icon: <SiGooglecampaignmanager360 />, route: '/gestor' },
-    { text: 'Cuenta', icon: <People />, route: '/users' },
+    { text: "Panel", icon: <Dashboard />, route: "/dashboard" },
+    { text: "Análisis", icon: <PieChart />, route: "/analytics" },
+    { text: "Reportes", icon: <BarChart />, route: "/reports" },
+    { text: "Gestor", icon: <SiGooglecampaignmanager360 />, route: "/gestor" },
+    { text: "Información", icon: <IoInformationCircle />, route: "/curso" },
+    { text: "Cuenta", icon: <People />, route: "/users" },
   ];
 
   const handleLogout = () => {
-    sessionStorage.removeItem('Token_usuario'); 
-    sessionStorage.removeItem('Usuario_Id'); 
-    navigate('/login');
+    sessionStorage.removeItem("Token_usuario");
+    sessionStorage.removeItem("Usuario_Id");
+    navigate("/login");
   };
 
   return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+    <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <div className="sidebar-header">
-        <span className="menu-icon" onClick={() => setIsCollapsed(!isCollapsed)}>
+        <span
+          className="menu-icon"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        >
           <Menu />
         </span>
         {!isCollapsed && <span>Admin Panel</span>}
@@ -45,7 +58,7 @@ const Sidebar = () => {
           <span className="sidebar-item-icon">
             <Logout />
           </span>
-          {!isCollapsed && 'Logout'}
+          {!isCollapsed && "Logout"}
         </li>
       </ul>
     </div>
